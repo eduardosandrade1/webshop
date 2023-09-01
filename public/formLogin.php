@@ -11,7 +11,7 @@
             session_start();
             $_SESSION['logado'] = true;
             $_SESSION['user_info'] = $userExists;
-            header("location: produtos.php");
+            header("location: ../index.php");
         } else {
             session_start();
             $_SESSION['error_login'] = "Usuário e/ou senha não existem!";

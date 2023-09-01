@@ -1,11 +1,11 @@
 <?php 
 
     include ("./classes/Products.php");
+    include("./modules/config.php");
 
     // $prod = new Products
     $products = new Products();
     $allProducts = $products->getAllProducts();
-
 ?>
 
 <!DOCTYPE html>
@@ -17,15 +17,25 @@
 </head>
 <body>
 
-    <?php 
-    include("./view/header.php");
+    <div class="container">
 
-    ?>
+    <?php include("view/header.php"); ?>
 
-    <h1>
-        Bem vindo!
-    </h1>
+    <ul>
+        <!-- Listando os produtos -->
+        <?php foreach($allProducts as $product){ ?>
+            <li>
+                <img src="<?php echo SITE_ROOT.$product['image_path']; ?>" alt="" width="100">
+                <?php
+                    // "Nome: {$product['name']} - Preço: R$ ".number_format((float)$product["price"], 2); 
+                    echo "Nome: ". $product['name'] . " - Price: $".$product['price'];
+                ?>
 
+            </li>
+        <?php } ?>
+    </ul>
+
+    </div>
 
 
     <div class="container">

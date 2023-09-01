@@ -1,6 +1,7 @@
 <?php 
 
     include("../classes/Products.php");
+    include("../modules/config.php");
 
     if ( isset($_GET) && ! empty($_GET) && isset($_GET['id']) && ! empty($_GET['id']) ) {
  
@@ -51,7 +52,7 @@
                 <input type="number" name="quantity" value="<?php echo $quantity; ?>">
             </div>
             <div class="">
-                <img src="<?php echo $image; ?>" alt="teste" width="300">
+                <img src="<?php echo SITE_ROOT.$image; ?>" alt="teste" width="300">
                 <label for="price">Image</label>
                 <input type="file" name="fileToUpload">
             </div>

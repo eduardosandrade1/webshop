@@ -1,6 +1,7 @@
 <?php
     include("middleware.php");
     include("../classes/Products.php");
+    include("../modules/config.php");
 
     $products = new Products();
     $allProducts = $products->getAllProducts();
@@ -26,7 +27,7 @@
             <!-- Listando os produtos -->
             <?php foreach($allProducts as $product){ ?>
                 <li>
-                    <img src="<?php echo $product['image_path']; ?>" alt="" width="100">
+                    <img src="<?php echo SITE_ROOT.$product['image_path']; ?>" alt="" width="100">
                     <?php
                      // "Nome: {$product['name']} - Preço: R$ ".number_format((float)$product["price"], 2); 
                      echo "Nome: ". $product['name'] . " - Price: $".$product['price'];

@@ -22,12 +22,12 @@
             <button type="submit">Entrar</button>
 
             <p>
+                <a href="registerUser.php">cadastre-se</a>
+            </p>
+
+            <p>
                 <?php
-                    session_start();
-                    if ( isset($_SESSION['error_login']) && !empty($_SESSION['error_login']) ) {
-                        echo $_SESSION['error_login'];
-                        unset($_SESSION['error_login']);
-                    }
+                    include("../admin/msg.php");
                 ?>
             </p>
         </form>
