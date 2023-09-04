@@ -30,7 +30,7 @@
                     // "Nome: {$product['name']} - Preço: R$ ".number_format((float)$product["price"], 2); 
                     echo "Nome: ". $product['name'] . " - Price: $".$product['price'];
                 ?>
-
+                <a href="./public/viewProduct.php?id=<?php echo $product['id']; ?>">Visualizar</a>
             </li>
         <?php } ?>
     </ul>

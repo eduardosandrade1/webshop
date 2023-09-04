@@ -1,5 +1,8 @@
 <?php
 
+include("Sql.php");
+include("ProductsCart.php");
+
 class Cart{
 
     private $cart;
@@ -28,6 +31,26 @@ class Cart{
 
         return $query;
 
+    }
+
+    public function create($userID)
+    {
+        $params = [
+            ':uuserid' => $userID
+        ];
+
+        $this->sql->query("INSERT INTO cart (user_id) VALUES (:uuserid)", $params, true);
+
+        $queryIdCart = $this->sql->query("SELECT id FROM cart WHERE user_id = :uuserid AND date_deleted IS NULL", $params);
+
+        return $queryIdCart[0]['id'];
+    }
+
+
+    public function addItem($cartId, $productId)
+    {
+        $productsCart = new ProductsCart();
+        return $productsCart->create($cartId, $productId);
     }
 
 }
