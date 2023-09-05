@@ -1,6 +1,6 @@
 <?php
 
-include("Sql.php");
+include_once("Sql.php");
 
 class Products{
 

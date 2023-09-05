@@ -32,15 +32,19 @@
 </head>
 <body>
 
-    <a href="<?php echo SITE_ROOT; ?>/index.php">All products</a>
-
-    <div>
-        <img src="<?php echo $image ?>" alt="" width="500">
-        <a href="formAddToCart.php?id=<?php echo $_GET['id']; ?>">Add to Cart</a>
-        <h4><?php echo $name; ?></h4>
-        <h6><?php echo $description; ?></h6>
-        <p>price: $<?php echo $price; ?></p>
-        <p>Qtd: <?php echo $quantity; ?></p>
+    <?php include("../view/header.php"); ?>
+    <div class="container">
+        <a href="<?php echo SITE_ROOT; ?>/index.php">All products</a>
+    
+        <div>
+            <img src="<?php echo $image ?>" alt="" width="500">
+            <a href="formAddToCart.php?id=<?php echo $_GET['id']; ?>">Add to Cart</a>
+            <h4><?php echo $name; ?></h4>
+            <h6><?php echo $description; ?></h6>
+            <p>price: $<?php echo $price; ?></p>
+            <p>Qtd: <?php echo $quantity; ?></p>
+        </div>
+        <?php include("../view/msg.php"); ?>
     </div>
 </body>
 </html>

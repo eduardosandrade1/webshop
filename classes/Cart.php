@@ -1,6 +1,5 @@
 <?php
 
-include("Sql.php");
 include("ProductsCart.php");
 
 class Cart{
@@ -15,13 +14,19 @@ class Cart{
 
     public function getAllProductsid($id){
 
-        $params = [':uid' => $id                
+        $productsCart = new ProductsCart();
+        
+        return $productsCart->getByCartId($id);
+
+    }
+
+    public function getCartByUserId($userId) {
+        $params = [':uuserid' => $userId                
     
-    ];
-        $query = $this->sql->query('SELECT * FROM cart WHERE id = :uid',  $params);
+        ];
+        $query = $this->sql->query('SELECT * FROM cart WHERE user_id = :uuserid',  $params);
 
         return $query;
-
     }
 
     public function getAllCart(){
