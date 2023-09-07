@@ -36,14 +36,18 @@
     <div class="container">
         <a href="<?php echo SITE_ROOT; ?>/index.php">All products</a>
     
-        <div>
-            <img src="<?php echo $image ?>" alt="" width="500">
-            <a href="formAddToCart.php?id=<?php echo $_GET['id']; ?>">Add to Cart</a>
-            <h4><?php echo $name; ?></h4>
+        <form method="post" action="formAddToCart.php">
+            <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+            <img src="<?php echo $image ?>" alt="" width="300">
+            <h2><?php echo $name; ?></h2>
             <h6><?php echo $description; ?></h6>
             <p>price: $<?php echo $price; ?></p>
-            <p>Qtd: <?php echo $quantity; ?></p>
-        </div>
+            <div>
+                <label for="qttProduct">Qtt: </label>
+                <input type="number" name="qttProduct" min="1" value="1">
+            </div>
+            <button type="submit">Add to Cart</button>
+        </form>
         <?php include("../view/msg.php"); ?>
     </div>
 </body>

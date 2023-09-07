@@ -4,8 +4,9 @@
     include("../modules/config.php");
 
     if ( 
-        isset($_GET) &&
-        isset($_GET['id'])
+        isset($_POST) &&
+        isset($_POST['id']) &&
+        isset($_POST['qttProduct'])
      ) {
 
         // caso não esteja logado
@@ -24,10 +25,21 @@
             $idCart = $_SESSION['cartId'];
         }
 
-        if( $cart->addItem($idCart, $_GET['id']) ) {
-            $_SESSION['msg'] = "Produto adicionado no carrinho com sucesso!";
-            header("Location: viewProduct.php?id=".$_GET['id']);
+        for ($i = 0; $i < $_POST['qttProduct']; $i++) {
+
+            $addOnCart = $cart->addItem($idCart, $_POST['id']);
+
+            if( ! $addOnCart ) {
+                $_SESSION['msg'] = "Ocorreu um erro ao cadastrar um produto!";
+                header("Location: viewProduct.php?id=".$_POST['id']);
+                return;
+            }
+
         }
+
+        $_SESSION['msg'] = "Produto adicionado no carrinho com sucesso!";
+        header("Location: viewProduct.php?id=".$_POST['id']);
+
 
     }
 
