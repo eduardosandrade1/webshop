@@ -58,6 +58,8 @@ $totalInCart = 0;
             <h3>Total: R$ <?php echo $totalInCart; ?></h3>
         </div>
 
+        <a href="finishOrder.php">Finish Cart</a>
+
 
     </div>
 
