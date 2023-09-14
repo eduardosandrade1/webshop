@@ -13,14 +13,14 @@ class Address{
     }
 
 
-    public function getAllProductsid($id){
+    public function getByUserId($uuserid){
 
-        $params = [':uid' => $id                
-    
-    ];
+        $params = [
+            ':uuserid' => $uuserid
+        ];
 
  
-        $query = $this->sql->query('SELECT * FROM address WHERE id = :uid',  $params);
+        $query = $this->sql->query('SELECT * FROM address WHERE user_id = :uuserid',  $params);
 
         return $query;
 
@@ -49,7 +49,6 @@ class Address{
         return $this->sql->query("
         INSERT INTO address (user_id, street, street_number, zip_code, city, type) 
         VALUES (:uuserid, :ustreet, :ustreetnumber, :uzipcode, :ucity, :utype)", $params, true);
-
     }
 
 }

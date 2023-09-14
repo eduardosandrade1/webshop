@@ -18,12 +18,30 @@ class CreditCard {
             ':ucardnumber'=> $ucardnumber,
         ];
 
-        return $this->sql->query("
-        INSERT INTO credit_card (card_type, card_number, card_owner) 
-        VALUES (:utype, :uowner, :ucardnumber)", $params, true);
+        $insert = $this->sql->query("
+            INSERT INTO credit_card (card_type, card_number, card_owner) 
+            VALUES (:utype, :ucardnumber, :uowner)", $params, true);
+
+        if ( $insert ) {
+            return $this->getAllInfosCreditCard($utype, $uowner, $ucardnumber);
+        }
 
     }
 
+    public function getAllInfosCreditCard($utype, $uowner, $ucardnumber) {
+
+        $params = [
+            ':utype' => $utype,
+            ':uowner'=> $uowner,
+            ':ucardnumber'=> $ucardnumber,
+        ];
+
+        return $this->sql->query("SELECT * FROM credit_card WHERE card_type = :utype AND card_number = :ucardnumber AND card_owner = :uowner", 
+                                    $params);
+
+    }
+
+    
 }
 
 ?>

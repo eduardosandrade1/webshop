@@ -1,4 +1,8 @@
 <?php
+    session_start();
+
+    include_once("../classes/CreditCard.php");
+    include_once("../classes/Orders.php");
 
     if (
         isset($_POST['type']) &&
@@ -10,7 +14,18 @@
     ) {
 
         $creditcard = new CreditCard();
-        $creditcard->create($_POST['type'], $_POST['owner'], $_POST['card_number']);
+        $creditCardInfos = $creditcard->create($_POST['type'], $_POST['owner'], $_POST['card_number']);
+        $orderCreatedStatus = 1;
+        $order = new Orders();
+        $createdOrder = $order->create($_SESSION['cartId'], $creditCardInfos[0]['id'], 'card', $orderCreatedStatus);
+
+        if ( $createdOrder ) {
+            header("Location: confirmOrder.php");
+            return;
+        }
+
+
+
         
 
     }

@@ -33,6 +33,41 @@ class Orders{
 
     }
 
+    public function create($ucartid, $ucreaditcartid, $upaymenttype, $uorderstatus) {
+
+        $params = [
+            ":ucartid" => $ucartid,
+            ":ucreaditcartid" => $ucreaditcartid,
+            ":upaymenttype" => $upaymenttype,
+            ":uorderstatus" => $uorderstatus,
+        ];
+
+        $insert = $this->sql->query("
+            INSERT INTO orders (cart_id, credit_cart_id, payment_type, order_status) 
+            VALUES (:ucartid, :ucreaditcartid, :upaymenttype, :uorderstatus)", $params, true);
+
+        if ($insert) {
+            return $this->getOrdersByAllColumns($ucartid, $ucreaditcartid, $upaymenttype, $uorderstatus);
+        }
+
+    }
+
+    public function getOrdersByAllColumns($ucartid, $ucreaditcartid, $upaymenttype, $uorderstatus) {
+        $params = [
+            ":ucartid" => $ucartid,
+            ":ucreaditcartid" => $ucreaditcartid,
+            ":upaymenttype" => $upaymenttype,
+            ":uorderstatus" => $uorderstatus,
+        ];
+
+        return $this->sql->query("
+            SELECT * FROM orders
+            WHERE cart_id = :ucartid 
+            AND credit_cart_id = :ucreaditcartid 
+            AND payment_type = :upaymenttype 
+            AND order_status = :uorderstatus", $params);
+    }
+
 }
 
 ?>
