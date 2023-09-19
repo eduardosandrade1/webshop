@@ -20,6 +20,15 @@ class Cart{
 
     }
 
+
+    public function getProductInCartByCartIdAndProductId($cartId, $productId){
+
+        $productsCart = new ProductsCart();
+        
+        return $productsCart->getByCartIdAndProductId($cartId, $productId);
+
+    }
+
     public function getCartByUserId($userId) {
         $params = [':uuserid' => $userId                
     
@@ -52,12 +61,17 @@ class Cart{
     }
 
 
-    public function addItem($cartId, $productId)
+    public function addItem($cartId, $productId, $quantity)
     {
         $productsCart = new ProductsCart();
-        return $productsCart->create($cartId, $productId);
+        return $productsCart->create($cartId, $productId, $quantity);
     }
 
+    public function updateItem($cartId, $productId, $quantity)
+    {
+        $productsCart = new ProductsCart();
+        return $productsCart->update($cartId, $productId, $quantity);
+    }
 }
 
 ?>

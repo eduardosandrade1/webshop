@@ -10,13 +10,24 @@ class ProductsCart {
         $this->sql = new Sql();
     }
 
-    public function create($cartId, $productId) {
+    public function create($cartId, $productId, $quantity) {
         $params = [
             ':ucartid' => $cartId,
             ':uproductid' => $productId,
+            ':uquantity' => $quantity,
         ];
 
-        return $this->sql->query("INSERT INTO products_cart (cart_id, product_id) VALUES (:ucartid, :uproductid)", $params, true);
+        return $this->sql->query("INSERT INTO products_cart (cart_id, product_id, quantity) VALUES (:ucartid, :uproductid, :uquantity)", $params, true);
+    }
+
+    public function update($cartId, $productId, $quantity) {
+        $params = [
+            ':ucartid' => $cartId,
+            ':uproductid' => $productId,
+            ':uquantity' => $quantity,
+        ];
+
+        return $this->sql->query("UPDATE products_cart SET quantity = :uquantity WHERE cart_id = :ucartid AND product_id = :uproductid", $params, true);
     }
 
     public function delete($productCartId) {
@@ -35,15 +46,16 @@ class ProductsCart {
         return $this->sql->query("SELECT * FROM products_cart WHERE cart_id = :ucartid GROUP BY product_id", $params);
     }
 
-    // novo 07/09/2023 - CRIAR UMA FUNÇÃO PARA LISTAR QUANTOS DO MESMO PRODUTO TEM DENTRO DE DETERMINADO CARRINHO
-    public function getQttProductInCart($idCart, $idProduct) {
+    public function getByCartIdAndProductId($cartId, $productId)
+    {
         $params = [
-            ':ucartid' => $idCart,
-            ':uproduct_id' => $idProduct
+            ':ucartid' => $cartId,
+            ':uproductid' => $productId,
         ];
-
-        return $this->sql->query("SELECT count(*) as qtt FROM products_cart WHERE cart_id = :ucartid AND product_id = :uproduct_id", $params);
+        // foi adicionado o GROUP BY - 07/09/2023
+        return $this->sql->query("SELECT * FROM products_cart WHERE cart_id = :ucartid AND product_id = :uproductid", $params);
     }
+
 
 }
 

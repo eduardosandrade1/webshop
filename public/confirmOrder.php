@@ -38,16 +38,16 @@ $allAddress = $address->getByUserId($_SESSION['user_info'][0]['id']);
                         $productInfo = new Products();
                         $productCart = new ProductsCart();
                         $productInfo = $productInfo->getById($product['product_id']);
-                        $qttProduct  = $productCart->getQttProductInCart($_SESSION['cartId'], $product['product_id']);
+                        $qttProduct  = $product['quantity'];
     
-                        $totalInCart += ($productInfo[0]['price'] * $qttProduct[0]['qtt']);
+                        $totalInCart += ($productInfo[0]['price'] * $qttProduct);
     
     
                     ?>
                     <img src="<?php echo SITE_ROOT.$productInfo[0]['image_path']; ?>" alt="" width="150">
                     <p>Name: <?php echo $productInfo[0]['name']; ?></p>
                     <br>
-                    <p>Qtt: <?php echo $qttProduct[0]['qtt']; ?></p>
+                    <p>Qtt: <?php echo $qttProduct; ?></p>
     
                     <p>Price: <?php echo $productInfo[0]['price']; ?></p>
     

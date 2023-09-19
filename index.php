@@ -24,12 +24,18 @@
     <ul>
         <!-- Listando os produtos -->
         <?php foreach($allProducts as $product){ ?>
-            <li>
+            <li style="list-style: none;border: 1px solid black; margin:5px;">
                 <img src="<?php echo SITE_ROOT.$product['image_path']; ?>" alt="" width="100">
+                <p>
                 <?php
-                    // "Nome: {$product['name']} - Preço: R$ ".number_format((float)$product["price"], 2); 
-                    echo "Nome: ". $product['name'] . " - Price: $".$product['price'];
+                    echo "Nome: ". $product['name'];
                 ?>
+                </p>
+                <p>
+                    <?php
+                        echo "Price: $".$product['price'];
+                    ?>
+                </p>
                 <a href="./public/viewProduct.php?id=<?php echo $product['id']; ?>">Visualizar</a>
             </li>
         <?php } ?>

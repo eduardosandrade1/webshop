@@ -39,12 +39,11 @@ class Products{
 
 
 
-    public function create($name, $price, $quantity, $description, $cod, $imagePath) {
+    public function create($name, $price, $description, $cod, $imagePath) {
 
         $params = [
             ':uname' => $name,
             ':uprice'=> $price,
-            ':uquantity'=> $quantity,
             ':udescription' => $description,
             ':ucod' => $cod,
             ':uimage' => $imagePath
@@ -54,16 +53,15 @@ class Products{
             return false;
         }
 
-        return $this->sql->query("INSERT INTO products (name, price, quantidade, description, cod_artigo, image_path) VALUES (:uname, :uprice, :uquantity, :udescription, :ucod, :uimage)", $params, true);
+        return $this->sql->query("INSERT INTO products (name, price,description, cod_artigo, image_path) VALUES (:uname, :uprice, :udescription, :ucod, :uimage)", $params, true);
 
     }
 
-    public function update($id, $name, $price,$quantity, $description, $cod, $imagePath) {
+    public function update($id, $name, $price, $description, $cod, $imagePath) {
         $params = [
             ':uid' => $id,
             ':uname' => $name,
             ':uprice' => $price,
-            ':uquantity'=> $quantity,
             ':udescription' => $description,
             ':ucod' => $cod,
             ':uimage' => $imagePath
@@ -73,7 +71,7 @@ class Products{
             return false;
         }
     
-        return $this->sql->query("UPDATE products SET name = :uname, price = :uprice, quantidade = :uquantity,description = :udescription, cod_artigo = :ucod, image_path = :uimage WHERE id = :uid", $params, true);
+        return $this->sql->query("UPDATE products SET name = :uname, price = :uprice, description = :udescription, cod_artigo = :ucod, image_path = :uimage WHERE id = :uid", $params, true);
     }
 
     public function delete($id) {

@@ -12,7 +12,6 @@
         $productInfos = $product->getById($_GET['id']);
 
         $name = $productInfos[0]['name'];
-        $quantity = $productInfos[0]['quantidade'];
         $price = $productInfos[0]['price'];
         $description = $productInfos[0]['description'];
         $image = $productInfos[0]['image_path'];
