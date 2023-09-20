@@ -68,6 +68,16 @@ class Orders{
             AND order_status = :uorderstatus", $params);
     }
 
+    public function changeOderStatusToFinished($cartId)
+    {
+        $params = [
+            ':ucartid' => $cartId
+        ];
+
+        // 2 = finalizado
+        return $this->sql->query("UPDATE orders SET order_status = 2 WHERE cart_id = :ucartid", $params, true);
+    }
+
 }
 
 ?>

@@ -8,7 +8,11 @@ include_once('../classes/Products.php');
 include_once("../classes/ProductsCart.php");
 
 $cart = new Cart();
-$productsInCart = $cart->getAllProductsid($_SESSION['cartId']);
+if ( isset($_SESSION['cartId']) ) {
+    $productsInCart = $cart->getAllProductsid($_SESSION['cartId']);
+} else {
+    $productsInCart = [];
+}
 $totalInCart = 0;
 ?>
 

@@ -5,6 +5,7 @@ if ( session_status() !== PHP_SESSION_ACTIVE )
     session_start();
 }
 
+
 ?>
 
 <link rel="stylesheet" href="../src/css/header.css"> 

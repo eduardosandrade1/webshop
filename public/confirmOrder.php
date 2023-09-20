@@ -79,7 +79,7 @@ $allAddress = $address->getByUserId($_SESSION['user_info'][0]['id']);
         <p>City: <?php echo $allAddress[1]['city']; ?></p>
     </div>
 
-                <hr>
-    <a href="">Confirmar Compra</a>
+    <hr>
+    <a href="orderFinish.php">Confirmar Compra</a>
 </body>
 </html>

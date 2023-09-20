@@ -20,7 +20,6 @@ class Cart{
 
     }
 
-
     public function getProductInCartByCartIdAndProductId($cartId, $productId){
 
         $productsCart = new ProductsCart();
@@ -33,7 +32,7 @@ class Cart{
         $params = [':uuserid' => $userId                
     
         ];
-        $query = $this->sql->query('SELECT * FROM cart WHERE user_id = :uuserid',  $params);
+        $query = $this->sql->query('SELECT * FROM cart WHERE user_id = :uuserid WHERE date_deleted IS NULL',  $params);
 
         return $query;
     }
@@ -41,7 +40,7 @@ class Cart{
     public function getAllCart(){
 
  
-        $query = $this->sql->query('SELECT * FROM cart');
+        $query = $this->sql->query('SELECT * FROM cart WHERE date_deleted IS NULL');
 
         return $query;
 
@@ -60,7 +59,6 @@ class Cart{
         return $queryIdCart[0]['id'];
     }
 
-
     public function addItem($cartId, $productId, $quantity)
     {
         $productsCart = new ProductsCart();
@@ -71,6 +69,18 @@ class Cart{
     {
         $productsCart = new ProductsCart();
         return $productsCart->update($cartId, $productId, $quantity);
+    }
+
+    public function finishCart($cartId)
+    {
+
+        $params = [
+            ':ucartid' => $cartId,
+        ];
+    
+        return $this->sql->query("UPDATE cart SET date_deleted = NOW() WHERE id = :ucartid", $params, true);
+
+
     }
 }
 

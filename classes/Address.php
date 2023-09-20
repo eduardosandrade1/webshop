@@ -20,7 +20,7 @@ class Address{
         ];
 
  
-        $query = $this->sql->query('SELECT * FROM address WHERE user_id = :uuserid',  $params);
+        $query = $this->sql->query('SELECT * FROM address WHERE user_id = :uuserid ORDER BY id desc',  $params);
 
         return $query;
 
